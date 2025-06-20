@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Get battery percentage
+if command -v upower >/dev/null 2>&1; then
+    pct=$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{print $2}' | sed 's/%//')
+elif [ -f /sys/class/power_supply/BAT1/capacity ]; then
+    pct=$(cat /sys/class/power_supply/BAT1/capacity)
+elif command -v pmset >/dev/null 2>&1; then
+    pct=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
+elif command -v acpi >/dev/null 2>&1; then
+    pct=$(acpi -b | grep -P -o '[0-9]+(?=%)')
+else
+    pct="?"
+fi
+
+# Battery icon based on percentage
+if [[ "$pct" == "?" ]]; then
+    icon=" "
+elif (( pct >= 75 )); then
+    icon=" "
+elif (( pct >= 50 )); then
+    icon=" k"
+elif (( pct >= 25 )); then
+    icon=" "
+else
+    icon=" "
+fi
+
+echo "$icon ${pct}%"

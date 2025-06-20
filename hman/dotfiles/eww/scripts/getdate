@@ -1,0 +1,9 @@
+#!/bin/sh
+
+current_time=$(date '+%H:%M')
+current_date=$(date '+%d/%m/%y')
+
+clock_icon="󰥔 "
+calendar_icon="  "
+
+echo "${clock_icon} ${current_time} ${calendar_icon} ${current_date} "

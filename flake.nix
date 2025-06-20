@@ -1,0 +1,44 @@
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    catppuccin.url = "github:catppuccin/nix";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    niri.url = "github:sodiboo/niri-flake";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    secrets = {
+      url = "/home/hman/nix/secrets";
+      flake = false; 
+    };
+  };
+  outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, secrets, ... }: 
+  let
+    secretsData = import "${secrets}/secrets.nix";
+  in
+  {
+    nixosConfigurations.when-they-cry = nixpkgs.lib.nixosSystem {
+      specialArgs = { 
+        inherit inputs;
+        secrets = secretsData; 
+      };
+      modules = [ 
+        ./configuration.nix
+        catppuccin.nixosModules.catppuccin
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.hman = {
+            imports = [
+              ./hman.nix
+              inputs.spicetify-nix.homeManagerModules.default
+              catppuccin.homeModules.catppuccin
+              niri.homeModules.niri
+            ];
+            _module.args = { inherit inputs; secrets = secretsData; };
+          };
+        }
+      ];
+    };
+  };
+}
