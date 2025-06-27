@@ -36,3 +36,11 @@ Update secrets configuration:
 ```bash
 doas nix flake update secrets
 ```
+
+## Secure Boot
+
+Create Secure Boot keys:
+
+```bash
+doas sbctl create-keys
+```
