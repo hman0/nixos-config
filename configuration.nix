@@ -3,7 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, secrets, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -16,20 +15,16 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
+  boot.loader.systemd-boot.enable = true;
 
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.efiSupport = true;
+  # boot.loader.grub.device = "nodev";
+  #
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
 
-  catppuccin = {
-    enable = true;
-    flavor = "macchiato";
-    accent = "red";
-  };
-
-    # Enable gnome-keyring (needed for secrets, e.g., for apps like Chromium or Keychain access)
+  # Enable gnome-keyring (needed for secrets, e.g., for apps like Chromium or Keychain access)
   services.gnome.gnome-keyring.enable = true;
 
   services.mullvad-vpn.enable = true;
@@ -136,7 +131,6 @@
     fastfetch
     neovim
     git
-    # niri
     gnupg
     pinentry-tty
     foot
@@ -179,6 +173,8 @@
     swaylock
     nodejs
     nodePackages.nodemon
+    efibootmgr
+    sbctl
   ];
 
   nixpkgs.config.allowUnfree = true;
