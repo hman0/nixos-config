@@ -43,11 +43,11 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/home/hman/Mount/gentoo-home" = {
-    device = "/dev/nvme0n1p3";
-    fsType = "ext4";
-    options = [ "defaults" "exec" "user" "x-systemd.automount" "x-systemd.device-timeout=10" ];
-  };
+  # fileSystems."/home/hman/Mount/gentoo-home" = {
+  #   device = "/dev/nvme0n1p3";
+  #   fsType = "ext4";
+  #   options = [ "defaults" "exec" "user" "x-systemd.automount" "x-systemd.device-timeout=10" ];
+  # };
 
   swapDevices = [ ];
 

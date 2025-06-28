@@ -33,6 +33,8 @@
 
   xdg.portal.enable = true;
 
+  xdg.portal.xdgOpenUsePortal = true;
+
   xdg.portal.extraPortals = [
     pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-gnome
@@ -40,11 +42,27 @@
 
   xdg.portal.config = {
     common = {
-      default = [ "gtk" "gnome" ];
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
     };
     niri = {
-      default = [ "gtk" "gnome" ]; 
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
     };
+  };
+
+  systemd.user.services.xdg-desktop-portal.wantedBy = [ "default.target" ];
+  systemd.user.services.xdg-desktop-portal-gtk.wantedBy = [ "default.target" ];
+  systemd.user.services.xdg-desktop-portal-gnome.wantedBy = [ "default.target" ];
+
+  environment.sessionVariables = {
+    GTK_USE_PORTAL = "1";
+    XDG_CURRENT_DESKTOP = "niri";
+    NIXOS_XDG_OPEN_USE_PORTAL = "1";
   };
 
   networking.hostName = "when-they-cry"; # Define your hostname.
@@ -135,6 +153,8 @@
     pinentry-tty
     foot
     librewolf
+    brave
+    scrcpy
     eww
     pamixer
     playerctl
