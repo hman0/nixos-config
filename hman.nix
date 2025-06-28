@@ -105,6 +105,10 @@
     enable = true;
   };
 
+  programs.obs-studio = {
+    enable = true;
+  };
+
   programs.foot = {
     enable = true;
     settings = {
@@ -404,6 +408,9 @@
       };
       gestures = {
         hot-corners.enable = false;
+      };
+      debug = {
+        wait-for-frame-completion-in-pipewire = [];
       };
       environment = {
         ELECTRON_OZONE_PLATFORM_HINT = "wayland";
