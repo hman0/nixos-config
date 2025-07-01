@@ -32,6 +32,7 @@
           home-manager.users.hman = {
             imports = [
               ./hman.nix
+              ./modules/niri.nix
               inputs.spicetify-nix.homeManagerModules.default
               catppuccin.homeModules.catppuccin
               niri.homeModules.niri

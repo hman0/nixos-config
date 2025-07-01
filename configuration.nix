@@ -15,6 +15,12 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.kernelParams = [
+    "nvidia_drm.modeset=1" 
+    "nvidia_drm.fbdev=1" 
+    "systemd.unified_cgroup_hierarchy=1"
+  ];
+
   boot.loader.systemd-boot.enable = true;
 
   # boot.loader.grub.enable = true;
@@ -23,12 +29,12 @@
   #
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Enable gnome-keyring (needed for secrets, e.g., for apps like Chromium or Keychain access)
+  
+  # Services
+  services.dbus.enable = true;
+  programs.dconf.enable = true;
   services.gnome.gnome-keyring.enable = true;
-
   services.mullvad-vpn.enable = true;
-
   services.flatpak.enable = false;
 
   xdg.portal.enable = true;
@@ -67,6 +73,7 @@
     font = "Lat2-Terminus16";
     keyMap = lib.mkForce "uk";
     useXkbConfig = true; # use xkb.options in tty.
+    earlySetup = true;
   };
 
   services.pipewire = {
@@ -83,6 +90,7 @@
     open = true; 
     nvidiaSettings = false;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
+    modesetting.enable = true;
   };
 
   hardware.graphics = {
@@ -100,7 +108,7 @@
 
   users.users.hman = {
    isNormalUser = true;
-   extraGroups = [ "wheel" "video" "audio" "disk" "docker" ]; # Enable ‘sudo’ for the user.
+   extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" ]; # Enable ‘sudo’ for the user.
    shell = pkgs.zsh;
    uid = 1001;
   };
@@ -128,61 +136,23 @@
   security.pam.services.swaylock = {};
 
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
+    git
     wget
     bash
     wpa_supplicant
-    fastfetch
     neovim
-    git
     gnupg
     pinentry-tty
     foot
-    librewolf
-    brave
-    scrcpy
-    eww
     pamixer
     playerctl
     swaybg
     grim
     brightnessctl
     acpi
-    cbonsai
-    cava
-    dconf
-    bibata-cursors
-    xsettingsd
-    vesktop
-    obs-studio
-    fuzzel
-    ffmpeg-full
-    glxinfo
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
-    gnome-keyring
-    whitesur-icon-theme
-    spotify
-    steam
-    gamemode
-    protonup-qt
-    mangohud
-    xwayland-satellite
-    qbittorrent
-    dunst
-    gamescope
-    bottles
-    unrar-free
-    mpv
-    unzip
-    tldr
-    wl-clipboard
-    swaylock
-    nodejs
-    nodePackages.nodemon
     efibootmgr
     sbctl
-    nautilus
   ];
 
   nixpkgs.config.allowUnfree = true;
