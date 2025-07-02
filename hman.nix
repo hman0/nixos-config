@@ -172,28 +172,22 @@
 
   home.packages = with pkgs; [
     fastfetch
-    cbonsai
     cava
     dconf
     bibata-cursors
     xsettingsd
     vesktop
     fuzzel
-    ffmpeg-full
-    glxinfo
+    ffmpeg-headless
     xdg-desktop-portal-gnome
     gnome-keyring
     whitesur-icon-theme
     steam
-    heroic
     gamemode
-    protonup-qt
     mangohud
     xwayland-satellite
-    qbittorrent
     dunst
     gamescope
-    bottles
     unrar-free
     mpv
     unzip
@@ -206,6 +200,7 @@
     nautilus
     eww
     librewolf
+    scrcpy
   ];
 
   catppuccin = {

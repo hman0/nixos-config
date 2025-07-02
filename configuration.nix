@@ -158,12 +158,6 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    bottles = pkgs.bottles.override {
-      removeWarningPopup = true;
-    };
-  };
-
   fonts = {
     packages = with pkgs; [
       noto-fonts-cjk-sans
