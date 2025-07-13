@@ -140,12 +140,14 @@
     git
     wget
     bash
+    dash
     wpa_supplicant
     neovim
     gnupg
     pinentry-tty
     foot
     pamixer
+    pulsemixer
     playerctl
     swaybg
     grim

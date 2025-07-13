@@ -201,6 +201,8 @@
     eww
     librewolf
     scrcpy
+    fragments
+    celluloid
   ];
 
   catppuccin = {
