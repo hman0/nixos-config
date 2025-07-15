@@ -117,12 +117,12 @@
     enable = true;
   };
 
-  programs.steam.enable = true;
-
   programs.appimage = {
     enable = true;
     binfmt = true;
   };
+
+  programs.steam.enable = true;
   
   security.doas.enable = true;
   security.doas.extraRules = [

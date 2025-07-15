@@ -184,6 +184,7 @@
     whitesur-icon-theme
     steam
     gamemode
+    game-devices-udev-rules
     mangohud
     xwayland-satellite
     dunst
