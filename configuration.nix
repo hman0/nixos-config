@@ -13,7 +13,13 @@
     echo "Available secrets: ${builtins.toJSON (builtins.attrNames secrets)}"
   '';
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest; # binary kernel
+
+  boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {
+    mArch = "ZEN4"; 
+  };
+
+  services.scx.enable = true;
 
   boot.kernelParams = [
     "nvidia_drm.modeset=1" 
@@ -29,7 +35,12 @@
   #
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
+  # ZFS support
+  # boot.supportedFilesystems = [ "zfs" ];
+  # boot.zfs.forceImportRoot = false; 
+  # networking.hostId = "da3429c1";
+
   # Services
   services.dbus.enable = true;
   programs.dconf.enable = true;
@@ -63,8 +74,9 @@
     networks = {
       "${secrets.ssid_vm}" = { psk = secrets.psk_vm; priority = 20; };
     };
-
   };
+
+  networking.firewall.enable = false;
 
   time.timeZone = "Europe/London";
 

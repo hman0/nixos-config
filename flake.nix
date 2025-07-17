@@ -7,12 +7,13 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     secrets = {
       url = "/home/hman/nix/secrets";
       flake = false; 
     };
   };
-  outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, secrets, lanzaboote, ... }: 
+  outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, secrets, lanzaboote, chaotic, ... }: 
   let
     secretsData = import "${secrets}/secrets.nix";
   in
@@ -41,6 +42,7 @@
           };
         }
         lanzaboote.nixosModules.lanzaboote
+        
         ({ pkgs, lib, ... }: {
 
           environment.systemPackages = [
@@ -54,6 +56,7 @@
             pkiBundle = "/var/lib/sbctl";
           };
         })
+        chaotic.nixosModules.default
       ];
     };
   };
