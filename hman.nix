@@ -170,6 +170,14 @@
     colorScheme = "macchiato";
   };
 
+  programs.brave = {
+    enable = true;
+    commandLineArgs = [
+      "--enable-features=UseOzonePlatform"
+      "--ozone-platform=wayland"
+    ];
+  };
+
   home.packages = with pkgs; [
     fastfetch
     cava
