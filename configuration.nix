@@ -46,7 +46,7 @@
   programs.dconf.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.mullvad-vpn.enable = true;
-  services.flatpak.enable = false;
+  services.flatpak.enable = true;
 
   xdg.portal.enable = true;
   
@@ -168,6 +168,13 @@
     efibootmgr
     sbctl
   ];
+
+  services.flatpak = {
+    packages = [
+      "org.vinegarhq.Sober"
+      "com.github.tchx84.Flatseal"
+    ];
+  };
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

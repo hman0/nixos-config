@@ -95,3 +95,24 @@
   :reserve (struts :side "top" :distance "4%")
   :exclusive true
   (bar))
+
+(defwindow sysinfo
+  :monitor 1
+  :geometry (geometry :x "77%" :y "3%" :width "20%" :height "90%")
+
+  (box :orientation "vertical" :space-evenly true :class "sysinfo-widget"
+    (label :text "HOSTNAME" :class "hostname")
+
+    (box :orientation "horizontal" :space-evenly true
+      (label :text "CPU" :class "cpu")
+      (label :text "RAM" :class "ram"))
+
+    (box :orientation "horizontal" :space-evenly true
+      (label :text "DISK" :class "disk")
+      (label :text "NETWORK" :class "net"))
+
+    (box :orientation "horizontal" :space-evenly true
+      (label :text "CLOCK" :class "clock")
+      (label :text "WEATHER" :class "weather"))
+  )
+)

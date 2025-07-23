@@ -13,6 +13,14 @@
   border-color: #5b6078;
 }
 
+.sysinfo-widget {
+  background-color: #24273a;
+  color: #cad3f5;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #ed8796;
+}
+
 // Styles on classes (see eww.yuck for more information)
 
 .systray {
@@ -48,4 +56,17 @@
 .workspaces button:hover {
   color: #D35D6E;
 }
+
+// .hostname {
+//   font-size: 20px;
+//   font-weight: bold;
+//   color: #66ccff;
+//   margin-bottom: 10px;
+//   text-align: right;
+// }
+//
+// .cpu, .ram, .disk, .net, .clock, .weather {
+//   font-size: 14px;
+//   margin: 4px;
+// }
 
