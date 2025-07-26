@@ -100,7 +100,7 @@
   :monitor 1
   :geometry (geometry :x "77%" :y "3%" :width "20%" :height "90%")
 
-  (box :orientation "vertical" :space-evenly true :class "sysinfo-widget"
+  (box :orientation "vertical" :space-evenly true 
     (label :text "HOSTNAME" :class "hostname")
 
     (box :orientation "horizontal" :space-evenly true

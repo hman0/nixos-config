@@ -13,13 +13,13 @@
     echo "Available secrets: ${builtins.toJSON (builtins.attrNames secrets)}"
   '';
 
-  #boot.kernelPackages = pkgs.linuxPackages_latest; # binary kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest; # binary kernel
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {
-    mArch = "ZEN4"; 
-  };
-
-  services.scx.enable = true;
+  # boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {
+  #   mArch = "ZEN4"; 
+  # };
+  #
+  # services.scx.enable = true;
 
   boot.kernelParams = [
     "nvidia_drm.modeset=1" 
@@ -167,6 +167,7 @@
     acpi
     efibootmgr
     sbctl
+    mission-center
   ];
 
   services.flatpak = {
