@@ -120,7 +120,7 @@
 
   users.users.hman = {
    isNormalUser = true;
-   extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" ]; # Enable ‘sudo’ for the user.
+   extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" "input" ]; # Enable ‘sudo’ for the user.
    shell = pkgs.zsh;
    uid = 1001;
   };

@@ -7,6 +7,7 @@
 
   home.file."Scripts".source = ./hman/dotfiles/Scripts;
   xdg.configFile."eww".source = ./hman/dotfiles/eww;
+  xdg.configFile."nvim".source = ./hman/dotfiles/nvim;
 
   gtk = {
     enable = true;
@@ -202,6 +203,7 @@
     p7zip
     tldr
     wl-clipboard
+    wtype
     swaylock
     nodejs
     nodePackages.nodemon
@@ -211,6 +213,7 @@
     scrcpy
     fragments
     celluloid
+    superTuxKart
   ];
 
   catppuccin = {
