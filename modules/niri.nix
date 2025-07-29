@@ -123,6 +123,10 @@
           action.spawn = "librewolf";
           hotkey-overlay.title = "Open a Web Browser: librewolf";
         };
+        "Mod+Shift+W" = {
+          action.spawn = "brave";
+          hotkey-overlay.title = "Open alternative Web Browser: brave";
+        };
         "Mod+Alt+L" = {
           action.spawn = "swaylock";
           hotkey-overlay.title = "Lock the Screen: swaylock";
