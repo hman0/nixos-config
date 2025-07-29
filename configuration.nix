@@ -7,13 +7,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/services.nix
+      ./modules/boot.nix
     ];
 
   system.activationScripts.debug-secrets = ''
     echo "Available secrets: ${builtins.toJSON (builtins.attrNames secrets)}"
   '';
-
-  boot.kernelPackages = pkgs.linuxPackages_latest; # binary kernel
 
   # boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {
   #   mArch = "ZEN4"; 
@@ -21,54 +21,13 @@
   #
   # services.scx.enable = true;
 
-  boot.kernelParams = [
-    "nvidia_drm.modeset=1" 
-    "nvidia_drm.fbdev=1" 
-    "systemd.unified_cgroup_hierarchy=1"
-  ];
-
-  boot.loader.systemd-boot.enable = true;
-
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.device = "nodev";
-  #
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # ZFS support
-  # boot.supportedFilesystems = [ "zfs" ];
-  # boot.zfs.forceImportRoot = false; 
-  # networking.hostId = "da3429c1";
-
-  # Services
-  services.dbus.enable = true;
-  programs.dconf.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  services.mullvad-vpn.enable = true;
-  services.flatpak.enable = true;
-
-  xdg.portal.enable = true;
-  
-  #xdg.portal.xdgOpenUsePortal = true;
- 
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gnome  
-  ];
-
-  xdg.portal.config = {
-    common = {
-      default = [ "gnome" ];
-    };
-  };
-
   environment.sessionVariables = {
     GTK_USE_PORTAL = "1";
     XDG_CURRENT_DESKTOP = "niri";
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
   };
 
-  networking.hostName = "when-they-cry"; # Define your hostname.
+  networking.hostName = "when-they-cry"; 
   networking.wireless = {
     enable = true;
     networks = {
@@ -87,13 +46,6 @@
     useXkbConfig = true; # use xkb.options in tty.
     earlySetup = true;
   };
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  virtualisation.docker.enable = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
@@ -124,6 +76,8 @@
    shell = pkgs.zsh;
    uid = 1001;
   };
+  
+  programs.dconf.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -144,8 +98,6 @@
       keepEnv = true;
     }
   ];
-
-  security.pam.services.swaylock = {};
 
   environment.systemPackages = with pkgs; [
     vim
@@ -189,32 +141,29 @@
       whatsapp-emoji-font
     ];
     fontconfig = {
-    enable = true;
-    defaultFonts = {
-      emoji = [ "WhatsApp Emoji" ];
-      serif = [
-        "Noto Sans"
-        "Noto Sans CJK SC" 
-        "Noto Sans CJK TC"
-        "Noto Sans CJK JP"
-        "Noto Sans CJK KR"
-      ];
-      sansSerif = [
-        "Noto Sans"
-        "Noto Sans CJK SC"  
-      ];
-      monospace = [
-        "JetBrainsMono Nerd Font Mono"
-        "JetBrains Mono"
-        "Noto Sans Mono CJK SC"
-        "Noto Sans Mono"
-      ];
+      enable = true;
+      defaultFonts = {
+        emoji = [ "WhatsApp Emoji" ];
+        serif = [
+          "Noto Sans"
+          "Noto Sans CJK SC" 
+          "Noto Sans CJK TC"
+          "Noto Sans CJK JP"
+          "Noto Sans CJK KR"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Noto Sans CJK SC"  
+        ];
+        monospace = [
+          "JetBrainsMono Nerd Font Mono"
+          "JetBrains Mono"
+          "Noto Sans Mono CJK SC"
+          "Noto Sans Mono"
+        ];
+      };
     };
   };
-};
-
-  services.openssh.enable = true;
-
   system.stateVersion = "25.05"; 
 }
 
