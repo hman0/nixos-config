@@ -8,6 +8,12 @@ Rebuild and switch to the new configuration:
 doas nixos-rebuild switch --flake /etc/nixos
 ```
 
+Update packages when desired:
+
+```bash
+doas nix flake update
+```
+
 ## Secrets Management
 
 ### Setup
