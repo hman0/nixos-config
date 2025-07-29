@@ -119,9 +119,6 @@
         font = "JetBrainsMono Nerd Font:size=13";
         pad = "10x10";
       };
-      cursor = {
-        color = "181926 f4dbd6";
-      };
       colors = {
         alpha = "0.9";
         foreground = "cad3f5";
@@ -225,6 +222,7 @@
     gtk.enable = true;
     fuzzel.enable = true;
     dunst.enable = false;
+    foot.enable = false;
   };
 }
 
