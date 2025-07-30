@@ -170,6 +170,15 @@
     colorScheme = "macchiato";
   };
 
+  xdg.desktopEntries.spotify = {
+    name = "Spotify";
+    comment = "Music streaming service";
+    icon = "spotify";
+    exec = "spotify --ozone-platform=x11 %U";
+    categories = [ "Audio" "Music" "Player" "AudioVideo" ];
+    mimeType = [ "x-scheme-handler/spotify" ];
+  };
+
   programs.brave = {
     enable = true;
     commandLineArgs = [
