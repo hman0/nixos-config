@@ -52,6 +52,16 @@
         swaylock = {};
       };
     };
+    doas = {
+      enable = true;
+      extraRules = [
+        {
+          groups = [ "wheel" ]; 
+          noPass = true;
+          keepEnv = true;
+        }
+      ];
+    };
   };
 }
 

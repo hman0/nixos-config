@@ -225,4 +225,3 @@
     foot.enable = false;
   };
 }
-
