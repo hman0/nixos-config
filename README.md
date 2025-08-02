@@ -1,5 +1,5 @@
 # NixOS Configuration
-
+![showcase](https://github.com/hman0/nixos-config/blob/master/showcase/showcase.png)
 ## Build System
 
 Rebuild and switch to the new configuration:
