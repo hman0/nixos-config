@@ -22,8 +22,7 @@
   qt = {
     enable = true;
     style.name = "kvantum";
-    platformTheme.name = "kvantum";
-  };
+    platformTheme.name = "kvantum"; };
 
   home.pointerCursor = {
     name = "Bibata-Modern-Ice";
@@ -222,6 +221,7 @@
     fragments
     celluloid
     superTuxKart
+    prismlauncher
   ];
 
   catppuccin = {
