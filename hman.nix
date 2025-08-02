@@ -1,4 +1,4 @@
-{ config, pkgs, catppuccin, niri, inputs, secrets, ... }:
+{ config, pkgs, lib, catppuccin, niri, inputs, secrets, ... }:
 {
   home.username = "hman";
   home.homeDirectory = "/home/hman";
@@ -11,9 +11,25 @@
   home.file."Pictures/Wallpapers".source = ./hman/dotfiles/Wallpapers;
   home.file."Pictures/Wallpapers".recursive = true;
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
+    };
+  };
+
   gtk = {
     enable = true;
-    iconTheme = {
+    theme = {
+      name = "catppuccin-macchiato-red-standard";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "red" ];
+        size = "standard";
+        variant = "macchiato";
+      };
+    };
+    iconTheme = lib.mkForce {
       name = "WhiteSur-dark";
       package = pkgs.whitesur-icon-theme;
     };
@@ -186,6 +202,8 @@
     ];
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     fastfetch
     cava
@@ -207,6 +225,7 @@
     gamescope
     unrar-free
     mpv
+    wget
     unzip
     p7zip
     tldr
@@ -219,7 +238,7 @@
     eww
     librewolf
     scrcpy
-    fragments
+    transmission_4-gtk
     celluloid
     superTuxKart
     prismlauncher
@@ -229,7 +248,6 @@
     enable = true;
     flavor = "macchiato";
     accent = "red";
-    gtk.enable = true;
     fuzzel.enable = true;
     dunst.enable = false;
     foot.enable = false;

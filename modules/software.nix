@@ -21,6 +21,7 @@
     efibootmgr
     sbctl
     mission-center
+    xdg-utils
   ];
 
   programs = {

@@ -14,23 +14,27 @@
       flake = false; 
     };
   };
+
   outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, secrets, lanzaboote, chaotic, nix-flatpak, ... }: 
   let
     secretsData = import "${secrets}/secrets.nix";
-  in
-  {
+  in {
     nixosConfigurations.when-they-cry = nixpkgs.lib.nixosSystem {
       specialArgs = { 
         inherit inputs;
         secrets = secretsData; 
       };
+
       modules = [ 
         ./configuration.nix
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
+
         {
-          home-manager.useGlobalPkgs = true;
+          home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
+
           home-manager.users.hman = {
             imports = [
               ./hman.nix
@@ -39,13 +43,16 @@
               catppuccin.homeModules.catppuccin
               niri.homeModules.niri
             ];
-            _module.args = { inherit inputs; secrets = secretsData; };
+            _module.args = {
+              inherit inputs;
+              secrets = secretsData;
+            };
           };
         }
-        lanzaboote.nixosModules.lanzaboote
-        
-        ({ pkgs, lib, ... }: {
 
+        lanzaboote.nixosModules.lanzaboote
+
+        ({ pkgs, lib, ... }: {
           environment.systemPackages = [
             pkgs.sbctl
           ];
@@ -57,9 +64,11 @@
             pkiBundle = "/var/lib/sbctl";
           };
         })
+
         chaotic.nixosModules.default
         nix-flatpak.nixosModules.nix-flatpak
       ];
     };
   };
 }
+

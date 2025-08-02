@@ -17,6 +17,7 @@
     GTK_USE_PORTAL = "1";
     XDG_CURRENT_DESKTOP = "niri";
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
+    BROWSER = "librewolf";
   };
 
   networking.hostName = "when-they-cry"; 
