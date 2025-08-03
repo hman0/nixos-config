@@ -242,6 +242,9 @@
     celluloid
     superTuxKart
     prismlauncher
+    playerctl
+    brightnessctl
+    swaybg
   ];
 
   catppuccin = {

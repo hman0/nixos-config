@@ -10,17 +10,10 @@
     neovim
     gnupg
     pinentry-tty
-    foot
     pamixer
     pulsemixer
-    playerctl
-    swaybg
-    grim
-    brightnessctl
-    acpi
     efibootmgr
     sbctl
-    mission-center
     xdg-utils
   ];
 
