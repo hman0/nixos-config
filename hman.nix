@@ -245,6 +245,7 @@
     playerctl
     brightnessctl
     swaybg
+    pinta
   ];
 
   catppuccin = {
