@@ -8,6 +8,7 @@
   home.file."Scripts".source = ./hman/dotfiles/Scripts;
   xdg.configFile."eww".source = ./hman/dotfiles/eww;
   xdg.configFile."nvim".source = ./hman/dotfiles/nvim;
+  xdg.configFile."mimeapps.list".force = true;
   home.file."Pictures/Wallpapers".source = ./hman/dotfiles/Wallpapers;
   home.file."Pictures/Wallpapers".recursive = true;
 
@@ -246,6 +247,8 @@
     brightnessctl
     swaybg
     pinta
+    bottles
+    protonplus
   ];
 
   catppuccin = {
