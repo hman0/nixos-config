@@ -33,13 +33,6 @@
     };
   };
 
-  services.flatpak = {
-    packages = [
-      "org.vinegarhq.Sober"
-      "com.github.tchx84.Flatseal"
-    ];
-  };
-
   fonts = {
     packages = with pkgs; [
       noto-fonts-cjk-sans

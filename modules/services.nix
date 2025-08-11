@@ -12,9 +12,6 @@
     mullvad-vpn = {
       enable = true;
     };
-    flatpak = {
-      enable = true;
-    };
     openssh = {
       enable = true;
     };

@@ -226,7 +226,6 @@
     gamescope
     unrar-free
     mpv
-    wget
     unzip
     p7zip
     tldr

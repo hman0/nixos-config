@@ -8,14 +8,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
     secrets = {
       url = "/home/hman/nix/secrets";
       flake = false; 
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, secrets, lanzaboote, chaotic, nix-flatpak, ... }: 
+  outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, secrets, lanzaboote, chaotic, ... }: 
   let
     secretsData = import "${secrets}/secrets.nix";
   in {
@@ -31,7 +30,7 @@
         home-manager.nixosModules.home-manager
 
         {
-          home-manager.useGlobalPkgs = false;
+          home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
 
@@ -66,7 +65,6 @@
         })
 
         chaotic.nixosModules.default
-        nix-flatpak.nixosModules.nix-flatpak
       ];
     };
   };
