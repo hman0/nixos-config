@@ -121,6 +121,10 @@
     };
   };
 
+  services.udiskie = {
+    enable = true;
+  };
+
   programs.swaylock = {
     enable = true;
   };

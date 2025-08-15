@@ -21,6 +21,17 @@
         enable = true;
       };
     };
+    udisks2 = {
+      enable = true;
+    };
+    displayManager = {
+      ly = {
+        enable = true;
+        settings = {
+          waylandsessions = "/etc/wayland-sessions";
+        };
+      };
+    };
   };
 
   xdg = {

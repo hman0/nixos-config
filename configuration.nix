@@ -19,6 +19,16 @@
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
     BROWSER = "librewolf";
   };
+  
+  environment.etc."/wayland-sessions/niri.desktop".text = ''
+    [Desktop Entry]
+    Name=Niri
+    Comment=Niri scrollable-tiling Wayland compositor
+    Exec=dbus-run-session niri --session
+    Type=Application
+    DesktopNames=niri
+  '';
+
 
   networking.hostName = "when-they-cry"; 
   networking.wireless = {
