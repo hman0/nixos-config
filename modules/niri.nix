@@ -118,6 +118,10 @@
           action.spawn = "fuzzel";
           hotkey-overlay.title = "Run an Application: fuzzel";
         };
+        "Mod+E" = {
+          action.spawn = "nautilus";
+          hotkey-overlay.title = "Open a File Manager: nautilus";
+        };
         "Mod+W" = {
           action.spawn = "librewolf";
           hotkey-overlay.title = "Open a Web Browser: librewolf";
