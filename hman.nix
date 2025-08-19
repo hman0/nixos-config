@@ -221,13 +221,12 @@
     xdg-desktop-portal-gnome
     gnome-keyring
     whitesur-icon-theme
-    steam
-    gamemode
     game-devices-udev-rules
     mangohud
+    gamemode
+    heroic
     xwayland-satellite
     dunst
-    gamescope
     unrar-free
     mpv
     unzip

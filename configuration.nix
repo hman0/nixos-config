@@ -38,7 +38,7 @@
     };
   };
 
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   time.timeZone = "Europe/London";
 
