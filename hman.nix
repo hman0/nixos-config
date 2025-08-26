@@ -251,6 +251,7 @@
     pinta
     bottles
     protonplus
+    dotnet-sdk_8
   ];
 
   catppuccin = {

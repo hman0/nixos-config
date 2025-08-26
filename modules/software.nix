@@ -15,6 +15,8 @@
     efibootmgr
     sbctl
     xdg-utils
+    barrier
+    waynergy
   ];
 
   programs = {
