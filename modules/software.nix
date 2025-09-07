@@ -17,6 +17,7 @@
     xdg-utils
     barrier
     waynergy
+    file
   ];
 
   programs = {

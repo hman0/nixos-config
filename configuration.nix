@@ -38,11 +38,6 @@
     };
   };
 
-  # networking.firewall.enable = false;
-
-  networking.firewall.allowedTCPPorts = [ 24800 ];
-  networking.firewall.allowedUDPPorts = [ 24800 ];
-
   time.timeZone = "Europe/London";
 
   i18n.defaultLocale = "en_GB.UTF-8";
