@@ -131,6 +131,7 @@
 
   programs.obs-studio = {
     enable = true;
+    package = pkgs.obs-studio.override {cudaSupport = true;};
   };
 
   programs.foot = {
@@ -252,6 +253,7 @@
     bottles
     protonplus
     dotnet-sdk_8
+    pcsx2
   ];
 
   catppuccin = {

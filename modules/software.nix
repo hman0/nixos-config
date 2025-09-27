@@ -8,6 +8,7 @@
     dash
     wpa_supplicant
     neovim
+    gcc
     gnupg
     pinentry-tty
     pamixer
@@ -15,8 +16,6 @@
     efibootmgr
     sbctl
     xdg-utils
-    barrier
-    waynergy
     file
   ];
 
