@@ -23,10 +23,12 @@
     extraPackages = with pkgs; [
       nvidia-vaapi-driver
       libva-utils
+      mesa
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
       nvidia-vaapi-driver
       libva-utils
+      mesa
     ];
   };
 }
