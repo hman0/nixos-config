@@ -261,6 +261,7 @@
       };
       cursor = {
         theme = "Bibata-Modern-Ice";
+        hide-after-inactive-ms = 1000;
       };
       hotkey-overlay = {
         skip-at-startup = true;
