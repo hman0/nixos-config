@@ -50,3 +50,10 @@ Create Secure Boot keys:
 ```bash
 doas sbctl create-keys
 ```
+
+---
+
+### Notice 
+This NixOS configuration assumes the system username is set to **hman**.  
+If you plan to use a different username, you will need to update configuration files accordingly.
+
