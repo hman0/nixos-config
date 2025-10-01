@@ -254,6 +254,7 @@
     protonplus
     dotnet-sdk_8
     pcsx2
+    hydralauncher
   ];
 
   catppuccin = {
