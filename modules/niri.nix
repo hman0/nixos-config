@@ -2,6 +2,7 @@
 {
   programs.niri = {
     enable = true;
+    package = pkgs.niri;
     settings = {
       prefer-no-csd = true;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
@@ -270,7 +271,7 @@
         hot-corners.enable = false;
       };
       debug = {
-        wait-for-frame-completion-in-pipewire = [];
+        #wait-for-frame-completion-in-pipewire = [];
       };
       environment = {
         ELECTRON_OZONE_PLATFORM_HINT = "wayland";
