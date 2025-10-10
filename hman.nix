@@ -216,7 +216,7 @@
     dconf
     bibata-cursors
     xsettingsd
-    equibop
+    vesktop
     fuzzel
     ffmpeg-headless
     xdg-desktop-portal-gnome
