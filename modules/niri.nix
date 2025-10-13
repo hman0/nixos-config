@@ -134,7 +134,7 @@
           action.spawn = "swaylock";
           hotkey-overlay.title = "Lock the Screen: swaylock";
         };
-        "Mod+B" = {
+        "Mod+X" = {
           action.spawn = "~/Scripts/fuzzel-bookmarks.sh";
         };
 
