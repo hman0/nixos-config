@@ -74,8 +74,7 @@
             x = 0;
             y = 5;
           };
-          color = "#0007";
-        };
+          color = "#0007"; };
       };
       spawn-at-startup = [
         {
@@ -134,6 +133,9 @@
         "Mod+Alt+L" = {
           action.spawn = "swaylock";
           hotkey-overlay.title = "Lock the Screen: swaylock";
+        };
+        "Mod+B" = {
+          action.spawn = "~/Scripts/fuzzel-bookmarks.sh";
         };
 
         "XF86AudioRaiseVolume" = {
