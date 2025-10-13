@@ -291,16 +291,27 @@ require("nvim-tree").setup({
   on_attach = my_on_attach,
 })
 
-require('lspconfig').rust_analyzer.setup{
-    settings = {
-        ["rust-analyzer"] = {
-            cargo = { allFeatures = true },
-            checkOnSave = {
-                command = "clippy"
-            }
-        }
-    }
-}
+vim.lsp.config('rust_analyzer', {
+  cmd = { 'rust-analyzer' },
+  root_markers = { 'Cargo.toml', 'rust-project.json' },
+  settings = {
+    ['rust-analyzer'] = {
+      cargo = {
+        allFeatures = true,
+      },
+      checkOnSave = {
+        command = 'clippy',
+      },
+    },
+  },
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'rust',
+  callback = function(args)
+    vim.lsp.enable('rust_analyzer')
+  end,
+})
 
 vim.opt.laststatus = 0
 vim.opt.tabstop = 2    

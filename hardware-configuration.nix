@@ -43,11 +43,15 @@
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  # fileSystems."/home/hman/Mount/gentoo-home" = {
-  #   device = "/dev/nvme0n1p3";
-  #   fsType = "ext4";
-  #   options = [ "defaults" "exec" "user" "x-systemd.automount" "x-systemd.device-timeout=10" ];
-  # };
+  fileSystems."/home/hman/Mount/Quarternary" = 
+    { device = "/dev/disk/by-uuid/70d6e773-76da-4693-8e65-601acb8d2988";
+      fsType = "xfs";
+      options = [ "defaults" "nofail" "users" ];
+    };
+
+  systemd.tmpfiles.rules = [
+    "d /home/hman/Mount/Quarternary 0755 hman users -"
+  ];
 
   swapDevices = [ ];
 
