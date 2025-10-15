@@ -90,6 +90,13 @@
         font = "JetBrainsMono Nerd Font:size=16";
         icon-theme = "WhiteSur-dark";
       };
+      key-bindings = {
+        prev-with-wrap = "Control+k Up";
+        next-with-wrap = "Control+j Down";
+        delete-line-forward = "none";
+        prev = "none";
+        next = "none";
+      };
     };
   };
 

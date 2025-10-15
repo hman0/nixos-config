@@ -24,6 +24,12 @@
     udisks2 = {
       enable = true;
     };
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      user = "hman";
+      dataDir = "/home/hman";
+    };
     displayManager = {
       ly = {
         enable = true;

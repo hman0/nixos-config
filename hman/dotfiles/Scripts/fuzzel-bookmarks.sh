@@ -17,6 +17,10 @@ bookmarks=(
   "  NixOS|https://wiki.nixos.org|Wiki"
   "  Games|FOLDER|"
   "  Isaacle|https://isaacle.net|Games"
+  "  Server|FOLDER|"
+  "  Syncthing - localhost|https://127.0.0.1:8384|Server"
+  "  Syncthing - libreshimi|https://192.168.0.24:8384|Server"
+  "  Jellyfin|http://192.168.0.24:8096|Server"
 )
 show_menu() {
   local current_folder="$1"
