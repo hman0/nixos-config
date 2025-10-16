@@ -15,7 +15,6 @@
 
   environment.sessionVariables = {
     GTK_USE_PORTAL = "1";
-    XDG_CURRENT_DESKTOP = "niri";
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
     BROWSER = "librewolf";
   };
@@ -27,6 +26,15 @@
     Exec=dbus-run-session niri --session
     Type=Application
     DesktopNames=niri
+  '';
+
+  environment.etc."/wayland-sessions/mango.desktop".text = ''
+    [Desktop Entry]
+    Name=MangoWC
+    Comment=Mango Wayland compositor
+    Exec=dbus-run-session mango
+    Type=Application
+    DesktopNames=mango
   '';
 
 

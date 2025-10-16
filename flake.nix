@@ -4,6 +4,7 @@
     catppuccin.url = "github:catppuccin/nix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     niri.url = "github:sodiboo/niri-flake";
+    mango.url = "github:DreamMaoMao/mango";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
@@ -14,7 +15,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, secrets, lanzaboote, chaotic, ... }: 
+  outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, spicetify-nix, niri, mango, secrets, lanzaboote, chaotic, ... }: 
   let
     secretsData = import "${secrets}/secrets.nix";
   in {
@@ -28,7 +29,10 @@
         ./configuration.nix
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
-
+        inputs.mango.nixosModules.mango
+        {
+          programs.mango.enable = true;
+        }
         {
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
@@ -38,9 +42,11 @@
             imports = [
               ./hman.nix
               ./modules/niri.nix
+              ./modules/mango.nix
               inputs.spicetify-nix.homeManagerModules.default
               catppuccin.homeModules.catppuccin
               niri.homeModules.niri
+              mango.hmModules.mango
             ];
             _module.args = {
               inherit inputs;

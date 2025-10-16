@@ -17,6 +17,9 @@
     sbctl
     xdg-utils
     file
+    libnotify
+    grim
+    slurp
   ];
 
   programs = {
