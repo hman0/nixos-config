@@ -23,7 +23,7 @@
     [Desktop Entry]
     Name=Niri
     Comment=Niri scrollable-tiling Wayland compositor
-    Exec=dbus-run-session niri --session
+    Exec=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP; systemctl --user start graphical-session.target; exec niri-session
     Type=Application
     DesktopNames=niri
   '';
@@ -32,18 +32,22 @@
     [Desktop Entry]
     Name=MangoWC
     Comment=Mango Wayland compositor
-    Exec=dbus-run-session mango
+    Exec=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP; systemctl --user start graphical-session.target; exec mango
     Type=Application
     DesktopNames=mango
   '';
 
 
   networking.hostName = "when-they-cry"; 
-  networking.wireless = {
+  # networking.wireless = {
+  #   enable = true;
+  #   networks = {
+  #     "${secrets.ssid_vm}" = { psk = secrets.psk_vm; priority = 20; };
+  #   };
+  # };
+
+  networking.networkmanager = {
     enable = true;
-    networks = {
-      "${secrets.ssid_vm}" = { psk = secrets.psk_vm; priority = 20; };
-    };
   };
 
   time.timeZone = "Europe/London";
@@ -58,7 +62,7 @@
 
   users.users.hman = {
    isNormalUser = true;
-   extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" "input" ];
+   extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" "input" "networkmanager" ];
    shell = pkgs.zsh;
    uid = 1001;
   };

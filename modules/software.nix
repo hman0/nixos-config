@@ -20,6 +20,7 @@
     libnotify
     grim
     slurp
+    protonvpn-gui
   ];
 
   programs = {

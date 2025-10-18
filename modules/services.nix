@@ -71,7 +71,15 @@
   security = {
     pam = {
       services = {
-        swaylock = {};
+        login = {
+          enableGnomeKeyring = true;
+        };
+        ly = {
+          enableGnomeKeyring = true;
+        };
+        swaylock = {
+          enableGnomeKeyring = true;
+        };
       };
     };
     doas = {

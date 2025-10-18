@@ -132,6 +132,35 @@
     enable = true;
   };
 
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" ];
+  };
+
+  systemd.user.targets.graphical-session = {
+    Unit = {
+      Description = "Graphical session";
+      Documentation = "man:systemd.special(7)";
+      BindsTo = [ "graphical-session.target" ];
+      Wants = [ "graphical-session-pre.target" ];
+      After = [ "graphical-session-pre.target" ];
+    };
+  };
+
+  systemd.user.services.gnome-keyring = {
+    Unit = {
+      Description = "GNOME Keyring";
+      PartOf = [ "graphical-session-pre.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=secrets";
+      Restart = "on-abort";
+    };
+    Install = {
+      WantedBy = [ "graphical-session-pre.target" ];
+    };
+  };
+
   programs.swaylock = {
     enable = true;
   };
