@@ -24,6 +24,8 @@
     openvpn
     networkmanager-openvpn
     networkmanagerapplet
+    egl-wayland
+    glxinfo
   ];
 
   programs = {

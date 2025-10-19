@@ -5,6 +5,7 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     niri.url = "github:sodiboo/niri-flake";
     mango.url = "github:DreamMaoMao/mango";
+    mango.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";

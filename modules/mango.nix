@@ -48,8 +48,8 @@
       repeat_delay=200
       
       # Mouse
-      accel_speed=0.7
-      accel_profile=0
+      accel_speed=0.0
+      accel_profile=2
       mouse_natural_scrolling=0
       
       # Touchpad
@@ -159,15 +159,15 @@
       bind=SUPER,9,view,9
       
       # Move Window to Tag
-      bind=SHIFT+SUPER,1,tag,1
-      bind=SHIFT+SUPER,2,tag,2
-      bind=SHIFT+SUPER,3,tag,3
-      bind=SHIFT+SUPER,4,tag,4
-      bind=SHIFT+SUPER,5,tag,5
-      bind=SHIFT+SUPER,6,tag,6
-      bind=SHIFT+SUPER,7,tag,7
-      bind=SHIFT+SUPER,8,tag,8
-      bind=SHIFT+SUPER,9,tag,9
+      bind=SHIFT+SUPER,code:10,tag,1
+      bind=SHIFT+SUPER,code:11,tag,2
+      bind=SHIFT+SUPER,code:12,tag,3
+      bind=SHIFT+SUPER,code:13,tag,4
+      bind=SHIFT+SUPER,code:14,tag,5
+      bind=SHIFT+SUPER,code:15,tag,6
+      bind=SHIFT+SUPER,code:16,tag,7
+      bind=SHIFT+SUPER,code:17,tag,8
+      bind=SHIFT+SUPER,code:18,tag,9
       
       # Layout Management
       bind=SUPER,r,switch_proportion_preset
