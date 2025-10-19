@@ -75,7 +75,7 @@
    isNormalUser = true;
    extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" "input" "networkmanager" ];
    shell = pkgs.zsh;
-   uid = 1001;
+   uid = 1000;
   };
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

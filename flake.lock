@@ -654,8 +654,8 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1750383309,
-        "narHash": "sha256-xkZbDvPvOyLzC/vwUibJXPjA0x/VVfy4jMkboGExp2M=",
+        "lastModified": 1760646112,
+        "narHash": "sha256-tSCGLW21dKJwZvLaJcfsqwCCeeDqCvAUSg7h4Z8GX0M=",
         "path": "/home/hman/nix/secrets",
         "type": "path"
       },

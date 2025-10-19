@@ -25,24 +25,12 @@
           accel-profile = "flat";
         };
       };
-      outputs."DP-4" = {
-        mode = {
-          width = 3440;
-          height = 1440;
-          refresh = 164.999;
-        };
-        scale = 1;
-        position = {
-          x = -750;
-          y = 1080;
-        };
-      };
-      outputs."DP-5" = {
+      outputs."eDP-1" = {
         mode = {
           width = 1920;
           height = 1080;
-          refresh = 60.0;
-        }; 
+          refresh = 144.03;
+        };
         scale = 1;
         position = {
           x = 0;
