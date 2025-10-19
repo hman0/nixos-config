@@ -183,9 +183,7 @@
       
       # Screenshots
       bind=SHIFT+SUPER,s,spawn,~/Scripts/screenshot-selection.sh
-      # Couldn't figure out how to see the currently focused monitor so I made a different bind for each monitor
-      bind=None,Print,spawn,~/Scripts/screenshot-screen.sh DP-4
-      bind=SHIFT,Print,spawn,~/Scripts/screenshot-screen.sh DP-5
+      bind=None,Print,spawn,~/Scripts/screenshot-screen.sh eDP-1
 
       # Media Keys
       bind=NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+
