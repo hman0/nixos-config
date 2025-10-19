@@ -33,7 +33,7 @@
     Type=Application
     DesktopNames=mango
   '';
-  networking.hostName = "when-they-cry"; 
+  networking.hostName = "pirate-king"; 
   networking.networkmanager = {
     enable = true;
     plugins = with pkgs; [ networkmanager-openvpn ];

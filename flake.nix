@@ -20,7 +20,7 @@
   let
     secretsData = import "${secrets}/secrets.nix";
   in {
-    nixosConfigurations.when-they-cry = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.pirate-king = nixpkgs.lib.nixosSystem {
       specialArgs = { 
         inherit inputs;
         secrets = secretsData; 
