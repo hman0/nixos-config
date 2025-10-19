@@ -9,9 +9,9 @@
         enable = true;
       };
     };
-    mullvad-vpn = {
-      enable = true;
-    };
+    # mullvad-vpn = {
+    #   enable = true;
+    # };
     openssh = {
       enable = true;
     };

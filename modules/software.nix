@@ -21,6 +21,9 @@
     grim
     slurp
     protonvpn-gui
+    openvpn
+    networkmanager-openvpn
+    networkmanagerapplet
   ];
 
   programs = {
