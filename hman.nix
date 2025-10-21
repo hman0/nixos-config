@@ -294,6 +294,9 @@
     pcsx2
     hydralauncher
     melonDS
+    jellyfin-rpc
+    ardour
+    puddletag
   ];
 
   catppuccin = {

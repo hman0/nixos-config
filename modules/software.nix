@@ -24,6 +24,7 @@
     openvpn
     networkmanager-openvpn
     networkmanagerapplet
+    distrobox
   ];
 
   programs = {
