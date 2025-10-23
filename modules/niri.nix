@@ -25,7 +25,7 @@
           accel-profile = "flat";
         };
       };
-      outputs."DP-4" = {
+      outputs."DP-1" = {
         mode = {
           width = 3440;
           height = 1440;
@@ -37,7 +37,7 @@
           y = 1080;
         };
       };
-      outputs."DP-5" = {
+      outputs."DP-2" = {
         mode = {
           width = 1920;
           height = 1080;

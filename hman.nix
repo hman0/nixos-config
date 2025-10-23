@@ -240,9 +240,46 @@
   programs.brave = {
     enable = true;
     commandLineArgs = [
-      "--ozone-platform=x11" # Use XWayland 
+      "--disable-background-networking"
+      "--disable-breakpad"
+      "--disable-crash-reporter"
+      "--disable-domain-reliability"
+      "--disable-features=AutofillServerCommunication"
+      "--disable-sync"
+      "--enable-features=UseOzonePlatform"
+      "--ozone-platform=x11"  
+      "--disable-features=MediaRouter"
+      "--disable-features=GoogleNow"
+      "--disable-features=PrivacySandboxSettings4"
+      "--disable-default-apps"
+      "--no-default-browser-check"
+      "--no-first-run"
+      "--no-pings"
+      "--no-report-upload"
     ];
   };
+
+  home.file.".config/BraveSoftware/Brave-Browser/brave_policies.json".text = ''
+    {
+      "alternate_error_pages": false,
+      "background_mode": false,
+      "browser_network_time_queries_enabled": false,
+      "dns_prefetching_enabled": false,
+      "download_directory_upgrade_enabled": false,
+      "metrics_reporting_enabled": false,
+      "password_leak_detection_enabled": false,
+      "payment_method_query_enabled": false,
+      "printing_enabled": true,
+      "promotion_toast_enabled": false,
+      "safe_browsing_enabled": false,
+      "search_suggest_enabled": false,
+      "signin_allowed": false,
+      "spellcheck_enabled": false,
+      "sync_disabled": true,
+      "translate_enabled": false,
+      "url_keyed_anonymized_data_collection_enabled": false
+    }
+  '';
 
   nixpkgs.config.allowUnfree = true;
 

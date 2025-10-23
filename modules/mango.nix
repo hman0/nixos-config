@@ -74,8 +74,8 @@
       scroller_focus_center=0
       
       # ===== Monitor Configuration =====
-      monitorrule=DP-4,0.5,1,scroller,0,1,-750,1080,3440,1440,165
-      monitorrule=DP-5,0.5,1,scroller,0,1,0,0,1920,1080,75
+      monitorrule=DP-1,0.5,1,scroller,0,1,-750,1080,3440,1440,165
+      monitorrule=DP-2,0.5,1,scroller,0,1,0,0,1920,1080,75
       
       # ===== Window Rules =====
       windowrule=isfloating:1,appid:librewolf,title:^Picture-in-Picture$
