@@ -334,6 +334,7 @@
     jellyfin-rpc
     ardour
     puddletag
+    protontricks
   ];
 
   catppuccin = {
