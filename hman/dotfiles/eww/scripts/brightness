@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $(($(brightnessctl get) * 100 / $(brightnessctl max)))
