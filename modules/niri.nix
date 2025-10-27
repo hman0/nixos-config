@@ -159,7 +159,7 @@
           allow-when-locked = true;
         };
         "XF86MonBrightnessDown" = {
-          action.spawn = [ "brightnessctl" "s" "-5%" ];
+          action.spawn = [ "brightnessctl" "s" "5%-" ];
           allow-when-locked = true;
         };
         "XF86AudioPlay" = {
