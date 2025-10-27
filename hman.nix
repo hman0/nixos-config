@@ -335,6 +335,7 @@
     ardour
     puddletag
     protontricks
+    openmw
   ];
 
   catppuccin = {
