@@ -25,6 +25,7 @@
     networkmanager-openvpn
     networkmanagerapplet
     distrobox
+    acpi
   ];
 
   programs = {
