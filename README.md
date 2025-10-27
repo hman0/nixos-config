@@ -1,6 +1,40 @@
 # NixOS Configuration
 ![showcase](https://github.com/hman0/nixos-config/blob/master/showcase/showcase.png)
 This NixOS config offers two compositor options — niri and mangowc — both tailored to look and behave as identical as possible for a consistent experience.
+
+## Installation
+
+Install a base config NixOS via the Graphical Installer ISO, or boot into the Minimal ISO and install this configuration directly.  These following instructions assume you are using the Minimal ISO.
+
+1. Partition and mount your drives
+
+2. Clone the repo to `/mnt/etc/nixos`
+```bash
+git clone https://github.com/hman0/nixos-config
+```
+3. Generate a hardware configuration for your system
+```bash
+nixos-generate-config --root /mnt
+```
+4. Configure the system
+
+> [!NOTE]
+> This NixOS configuration assumes the system username is set to **hman**. If you plan to use a different username, you will need to update configuration files accordingly.
+
+- Set hostname in `configuration.nix` and `flake.nix`
+
+- Set EFI system mount point in `modules/boot.nix`
+
+- Setup video drivers in `modules/drivers.nix` (Nvidia is configured by default, and Nvidia + Intel hybrid setup is configured in the `laptop` branch)
+5. Install the system
+```bash
+nixos-install --flake /mnt/etc/nixos#when-they-cry
+```
+> [!WARNING]
+> The installation will likely fail due to Secure Boot and Secrets Management not being set up. Follow the instructions below to configure these features, or remove all references to them from the config files to continue without them.
+
+**Note:** You may need to run `nixos-enter` to chroot into the installation before configuring these features.
+
 ## Build System
 
 Rebuild and switch to the new configuration:
@@ -54,7 +88,4 @@ doas sbctl create-keys
 
 ---
 
-### Notice 
-This NixOS configuration assumes the system username is set to **hman**.  
-If you plan to use a different username, you will need to update configuration files accordingly.
 
