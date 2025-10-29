@@ -2,11 +2,8 @@
 read -rp "Enter artist name: " artist
 [[ -z "$artist" ]] && { echo ""; exit 1; }
 
-files=(*.mp3 *.flac *.lrc)
-files=( "${files[@]}" ) 
-
 shopt -s nullglob
-files=( "${files[@]}" )
+files=( *.mp3 *.flac *.lrc )
 shopt -u nullglob
 
 if [ ${#files[@]} -eq 0 ]; then
@@ -14,13 +11,15 @@ if [ ${#files[@]} -eq 0 ]; then
   exit 1
 fi
 
-if [ ${#files[@]} -eq 1 ]; then
-  f="${files[0]}"
-  ext="${f##*.}"
-  title=$(echo "$f" | sed -E 's/^[0-9]+\. *//; s/\.[^.]+$//')
-  new="01 - $artist - $title.$ext"
-  echo "Renaming \"$f\" → \"$new\""
-  mv -i -- "$f" "$new"
+if [ ${#files[@]} -eq 1 ] || { [ ${#files[@]} -eq 2 ] && [[ ${files[0]%.*} == ${files[1]%.*} ]]; }; then
+  for f in "${files[@]}"; do
+    ext="${f##*.}"
+    title=$(echo "$f" | sed -E 's/\.[^.]+$//')
+    new="01 - $artist - $title.$ext"
+    echo "Renaming \"$f\" → \"$new\""
+    mv -i -- "$f" "$new"
+  done
+  echo "Complete"
   exit 0
 fi
 
@@ -28,9 +27,16 @@ for f in "${files[@]}"; do
   [[ "$f" == "cover.jpg" ]] && continue
   [[ -f "$f" ]] || continue
 
-  num=$(echo "$f" | cut -d'.' -f1)
-  title=$(echo "$f" | cut -d'.' -f2- | sed -E 's/^ *//; s/\.[^.]+$//')
+  base="${f%.*}"
+  num=$(echo "$base" | grep -oE '^[0-9]+')
+  title=$(echo "$base" | sed -E 's/^[0-9]+[[:punct:]]?[[:space:]]*//')
   ext="${f##*.}"
+
+  if [[ -z "$num" ]]; then
+    num="01"
+  else
+    num=$(printf "%02d" "$num")
+  fi
 
   new=$(printf "%s - %s - %s.%s" "$num" "$artist" "$title" "$ext")
   echo "Renaming \"$f\" → \"$new\""
