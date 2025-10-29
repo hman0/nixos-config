@@ -59,6 +59,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = ''
+    export PATH="$HOME/Scripts:$PATH"
+
     echo "-----------------------------------------------------"
     fastfetch --config nix 
     echo "-----------------------------------------------------"
