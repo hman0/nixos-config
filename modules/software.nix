@@ -25,6 +25,8 @@
     networkmanager-openvpn
     networkmanagerapplet
     distrobox
+    cargo
+    rustc
   ];
 
   programs = {
