@@ -26,6 +26,10 @@
     networkmanagerapplet
     distrobox
     acpi
+    cargo
+    rustc
+    nautilus
+    gvfs
   ];
 
   programs = {

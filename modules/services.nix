@@ -24,6 +24,9 @@
     udisks2 = {
       enable = true;
     };
+    gvfs = {
+      enable = true;
+    };
     syncthing = {
       enable = true;
       openDefaultPorts = true;
