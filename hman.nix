@@ -20,6 +20,16 @@
     };
   };
 
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    documents = "$HOME/Documents";
+    download = "$HOME/Downloads";
+    music = "$HOME/Music";
+    pictures = "$HOME/Pictures";
+    videos = "$HOME/Videos";
+  };
+
   gtk = {
     enable = true;
     theme = {

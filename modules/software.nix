@@ -26,6 +26,11 @@
     networkmanagerapplet
     egl-wayland
     glxinfo
+    distrobox
+    cargo
+    rustc
+    nautilus
+    gvfs
   ];
 
   programs = {
