@@ -27,6 +27,8 @@
     distrobox
     cargo
     rustc
+    nautilus
+    gvfs
   ];
 
   programs = {
