@@ -38,8 +38,13 @@
         };
       };
     };
+    upower = {
+      enable = true;	
+    };
+    power-profiles-daemon = {
+      enable = true;
+    };
   };
-
   xdg = {
     portal = {
       enable = true;
@@ -61,13 +66,11 @@
       };
     };
   };
-
   virtualisation = {
     docker = {
       enable = true;
     };
   };
-
   security = {
     pam = {
       services = {
@@ -93,5 +96,8 @@
       ];
     };
   };
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
 }
-
