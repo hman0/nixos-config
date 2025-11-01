@@ -333,6 +333,7 @@
     celluloid
     superTuxKart
     prismlauncher
+    openjdk25
     playerctl
     brightnessctl
     swaybg
