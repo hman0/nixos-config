@@ -35,7 +35,7 @@ for f in "${files[@]}"; do
   if [[ -z "$num" ]]; then
     num="01"
   else
-    num=$(printf "%02d" "$num")
+    num=$(printf "%02d" $((10#$num)))
   fi
 
   new=$(printf "%s - %s - %s.%s" "$num" "$artist" "$title" "$ext")
@@ -44,4 +44,3 @@ for f in "${files[@]}"; do
 done
 
 echo "Complete"
-
