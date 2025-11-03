@@ -68,6 +68,9 @@
     };
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    shellAliases = {
+      ssh = "TERM=xterm-256color ssh";
+    };
     initContent = ''
     echo "-----------------------------------------------------"
     fastfetch --config nix 
@@ -317,7 +320,7 @@
     celluloid
     superTuxKart
     prismlauncher
-    openjdk25
+    openjdk23
     playerctl
     brightnessctl
     swaybg
