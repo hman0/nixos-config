@@ -18,10 +18,10 @@ bookmarks=(
   "  Games|FOLDER|"
   "  Isaacle|https://isaacle.net|Games"
   "  Server|FOLDER|"
-  "  Homepage|http://192.168.0.24:3000|Server"
+  "  Homepage|http://192.168.0.169:3000|Server"
   "  Syncthing - localhost|https://127.0.0.1:8384|Server"
-  "  Syncthing - libreshimi|https://192.168.0.24:8384|Server"
-  "  Jellyfin|http://192.168.0.24:8096|Server"
+  "  Syncthing - libreshimi|https://192.168.0.169:8384|Server"
+  "  Jellyfin|http://192.168.0.169:8096|Server"
 )
 show_menu() {
   local current_folder="$1"
