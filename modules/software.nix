@@ -20,6 +20,7 @@
     libnotify
     grim
     slurp
+    imagemagick
     protonvpn-gui
     openvpn
     networkmanager-openvpn
@@ -30,6 +31,8 @@
     rustc
     nautilus
     gvfs
+    libcamera
+    openmw
   ];
 
   programs = {

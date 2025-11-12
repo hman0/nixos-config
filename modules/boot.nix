@@ -1,5 +1,4 @@
 { config, lib, pkgs, secrets, ... }:
-
 {
   boot = {
     kernelParams = [
@@ -9,7 +8,6 @@
       "arm64.nopauth"
       "efi=noruntime"
     ];
-    
     loader = {
       systemd-boot = {
         enable = true;

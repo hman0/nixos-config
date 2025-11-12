@@ -41,7 +41,7 @@
 
   networking.firewall = {
     enable = true;
-    checkReversePath = "loose";
+    allowedTCPPorts = [ 80 42020 3000 ];
   };
   
   # networking.wg-quick.interfaces = {
@@ -73,7 +73,7 @@
   };
   users.users.hman = {
    isNormalUser = true;
-   extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" "input" "networkmanager" ];
+   extraGroups = [ "wheel" "video" "audio" "disk" "docker" "tty" "input" "networkmanager" "kvm" ];
    shell = pkgs.zsh;
    uid = 1001;
   };

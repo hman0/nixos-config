@@ -29,8 +29,25 @@
         nixos-x13s.nixosModules.default
         {
           nixos-x13s.enable = true;
-	  nixos-x13s.kernel = "mainline";
         }
+        
+        ({ config, lib, pkgs, ... }: {
+          nixos-x13s.kernel = "mainline";
+        # nixos-x13s.kernel = lib.mkForce ((pkgs.linuxPackagesFor (
+        #   pkgs.linux_latest.override {
+        #     argsOverride = rec {
+        #       src = pkgs.fetchFromGitHub {
+        #         owner = "jhovold";
+        #         repo = "linux";
+        #         rev = "wip/sc8280xp-6.16";
+        #         hash = lib.fakeHash;
+        #       };
+        #       version = "6.16-sc8280xp";
+        #       modDirVersion = "6.16.0";
+        #     };
+        #   }
+        # )).kernel);
+        })
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
         inputs.mango.nixosModules.mango
@@ -60,4 +77,4 @@
       ];
     };
   };
-} 
+}

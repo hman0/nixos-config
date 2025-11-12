@@ -5,7 +5,6 @@
     package = pkgs.niri;
     settings = {
       prefer-no-csd = true;
-      screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       input = {
         warp-mouse-to-focus.enable = true;
         focus-follows-mouse.enable = true;
@@ -36,6 +35,9 @@
           x = 0;
           y = 0;
         };
+      };
+      animations = { 
+	enable = false;
       };
       layout = {
         gaps = 16;
@@ -231,9 +233,23 @@
         "Mod+V".action=toggle-window-floating; 
         "Mod+Shift+V".action=switch-focus-between-floating-and-tiling;
 
-        "Shift+Mod+S".action=screenshot;
-        "Print".action.screenshot-screen = [];
-        "Mod+Ctrl+S".action=screenshot-window; 
+        "Shift+Mod+S" = {
+          action.spawn = [ "/home/hman/Scripts/screenshot-jpeg.sh" "selection" ];
+          hotkey-overlay.title = "Screenshot Selection (JPEG)";
+        };
+        "Print" = {
+          action.spawn = [ "/home/hman/Scripts/screenshot-jpeg.sh" "screen" ];
+          hotkey-overlay.title = "Screenshot Screen (JPEG)";
+        };
+        "Mod+Ctrl+S" = {
+          action.spawn = [ "/home/hman/Scripts/screenshot-jpeg.sh" "window" ];
+          hotkey-overlay.title = "Screenshot Window (JPEG)";
+        };
+
+       "Mod+G" = {
+          action.spawn = "/home/hman/Scripts/tlp-toggle.sh";
+          hotkey-overlay.title = "Toggle TLP Gaming/Battery Mode";
+        }; 
 
         "Mod+Home".action=focus-column-first;
         "Mod+End".action=focus-column-last; 
