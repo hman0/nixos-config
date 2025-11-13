@@ -70,7 +70,7 @@
         {
           command = [ "eww" "open" "bar0" ];
         } {
-          command = [ "swaybg" "-i" "/home/hman/Pictures/Wallpapers/evening-sky.png" ];
+          sh = "swaybg -i ~/Pictures/Wallpapers/evening-sky.png";
         } {
           command = [ "xwayland-satellite" ];
         } {
@@ -177,7 +177,7 @@
         "Mod+Ctrl+L".action = focus-monitor-right; 
         
         "Mod+Space" = {
-          action.spawn = "/home/hman/Scripts/monitor-focus-toggle.sh";
+          action.spawn = "~/Scripts/monitor-focus-toggle.sh";
         };
 
         "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
@@ -234,15 +234,15 @@
         "Mod+Shift+V".action=switch-focus-between-floating-and-tiling;
 
         "Shift+Mod+S" = {
-          action.spawn = [ "/home/hman/Scripts/screenshot-jpeg.sh" "selection" ];
+          action.spawn = [ "~/Scripts/screenshot-jpeg.sh" "selection" ];
           hotkey-overlay.title = "Screenshot Selection (JPEG)";
         };
         "Print" = {
-          action.spawn = [ "/home/hman/Scripts/screenshot-jpeg.sh" "screen" ];
+          action.spawn = [ "~/Scripts/screenshot-jpeg.sh" "screen" ];
           hotkey-overlay.title = "Screenshot Screen (JPEG)";
         };
         "Mod+Ctrl+S" = {
-          action.spawn = [ "/home/hman/Scripts/screenshot-jpeg.sh" "window" ];
+          action.spawn = [ "~/Scripts/screenshot-jpeg.sh" "window" ];
           hotkey-overlay.title = "Screenshot Window (JPEG)";
         };
 
@@ -251,7 +251,7 @@
         };
 
        "Mod+G" = {
-          action.spawn = "/home/hman/Scripts/tlp-toggle.sh";
+          action.spawn = "~/Scripts/tlp-toggle.sh";
           hotkey-overlay.title = "Toggle TLP Gaming/Battery Mode";
         }; 
 
