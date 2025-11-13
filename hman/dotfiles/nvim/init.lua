@@ -1,3 +1,5 @@
+-- To-do: convert this config to Nix
+
 vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
   callback = function()
     local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
@@ -318,6 +320,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2    
 vim.opt.expandtab = true 
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 vim.opt.ruler = false
 vim.opt.autoindent = true
