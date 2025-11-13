@@ -246,6 +246,10 @@
           hotkey-overlay.title = "Screenshot Window (JPEG)";
         };
 
+        "Mod+B" = {
+          action.spawn = "~/Scripts/battery-notification.sh";
+        };
+
        "Mod+G" = {
           action.spawn = "/home/hman/Scripts/tlp-toggle.sh";
           hotkey-overlay.title = "Toggle TLP Gaming/Battery Mode";
