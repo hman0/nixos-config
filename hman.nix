@@ -329,7 +329,6 @@
     jellyfin-rpc
     ardour
     puddletag
-    ytfzf
   ];
 
   catppuccin = {

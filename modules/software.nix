@@ -20,6 +20,7 @@
     libnotify
     grim
     slurp
+    imv
     imagemagick
     protonvpn-gui
     openvpn
