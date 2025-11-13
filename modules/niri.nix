@@ -82,7 +82,7 @@
         } {
           command = [ "eww" "open" "bar1" ];
         } {
-          command = [ "swaybg" "-i" "/home/hman/Pictures/Wallpapers/evening-sky.png" ];
+          sh = "swaybg -i ~/Pictures/Wallpapers/evening-sky.png";
         } {
           command = [ "xwayland-satellite" ];
         } {
@@ -189,7 +189,7 @@
         "Mod+Ctrl+L".action = focus-monitor-right; 
         
         "Mod+Space" = {
-          action.spawn = "/home/hman/Scripts/monitor-focus-toggle.sh";
+          action.spawn = "~/Scripts/monitor-focus-toggle.sh";
         };
 
         "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
