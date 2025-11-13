@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Screenshot script that converts PNG to JPEG with web optimization
+# Script to take screenshots and convert it to JPEG, for small file size
 # Usage: screenshot-jpeg.sh [selection|screen|window]
 
 MODE="${1:-screen}"

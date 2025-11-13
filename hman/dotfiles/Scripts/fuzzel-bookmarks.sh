@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Script to quickly launch bookmarked websites using Fuzzel
 
 BROWSER="librewolf"
 bookmarks=(
