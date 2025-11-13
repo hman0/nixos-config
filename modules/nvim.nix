@@ -320,6 +320,16 @@
         end,
       })
 
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          if vim.fn.argc() > 0 then
+            local first = vim.fn.fnamemodify(vim.fn.argv(0), ":p:h")
+            vim.cmd("cd " .. first)
+          end
+        end
+      })
+
+
       vim.opt.laststatus = 0
       vim.opt.tabstop = 2    
       vim.opt.shiftwidth = 2    
