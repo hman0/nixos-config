@@ -44,6 +44,7 @@
               ./hman.nix
               ./modules/niri.nix
               ./modules/mango.nix
+              ./modules/nvim.nix
               inputs.spicetify-nix.homeManagerModules.default
               catppuccin.homeModules.catppuccin
               niri.homeModules.niri
