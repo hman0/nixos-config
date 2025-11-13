@@ -14,9 +14,18 @@
     (metric :label " "
             :value volume
             :onchange "pamixer --set-volume {}")
-    (metric :label "󰁹"
-	    :value battery
-    	    :onchange "")
+    (box :class "metric"
+         :orientation "h"
+         :space-evenly false
+      (button :onclick "~/Scripts/battery-notification.sh"
+              :class "battery-button"
+        (box :orientation "h"
+             :space-evenly false
+          (box :class "label" "󰁹")
+          (scale :min 0
+                 :max 101
+                 :active false
+                 :value battery))))
     (metric :label " "
             :value {EWW_RAM.used_mem_perc}
             :onchange "")
@@ -48,11 +57,11 @@
        :halign "center"
     {music != "" ? "${music}" : ""}))
 
-
-(defwidget metric [label value onchange]
+(defwidget metric [label value onchange ?onclick]
   (box :orientation "h"
        :class "metric"
        :space-evenly false
+       :onclick "${onclick ?: ''}"
     (box :class "label" label)
     (scale :min 0
            :max 101
