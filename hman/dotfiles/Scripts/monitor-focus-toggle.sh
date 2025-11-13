@@ -1,4 +1,5 @@
 #!/bin/sh
+# Script to quickly toggle focus between my monitors
 
 current_output=$(niri msg focused-output | grep -o "DP-[0-9]")
 

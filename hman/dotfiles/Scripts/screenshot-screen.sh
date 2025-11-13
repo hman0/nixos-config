@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Script to screenshot entire screen 
+# Usage: screenshot-screen.sh [DP-1|DP-2|etc]  
 
 monitor=$1
 

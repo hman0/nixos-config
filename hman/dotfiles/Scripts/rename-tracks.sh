@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Script to auto rename song filenames for my song library
+
 read -rp "Enter artist name: " artist
 [[ -z "$artist" ]] && { echo ""; exit 1; }
 
