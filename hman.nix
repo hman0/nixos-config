@@ -72,6 +72,8 @@
       ssh = "TERM=xterm-256color ssh";
     };
     initContent = ''
+    export PATH="$HOME/Scripts:$PATH"
+
     echo "-----------------------------------------------------"
     fastfetch --config nix 
     echo "-----------------------------------------------------"
