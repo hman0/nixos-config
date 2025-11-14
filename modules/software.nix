@@ -26,14 +26,12 @@
     openvpn
     networkmanager-openvpn
     networkmanagerapplet
-    distrobox
     acpi
     cargo
     rustc
     nautilus
     gvfs
     libcamera
-    openmw
   ];
 
   programs = {

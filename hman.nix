@@ -310,7 +310,6 @@
     p7zip
     tldr
     wl-clipboard
-    wtype
     swaylock
     nodejs
     nodePackages.nodemon
@@ -326,11 +325,9 @@
     playerctl
     brightnessctl
     swaybg
-    pinta
     melonDS
     jellyfin-rpc
-    ardour
-    puddletag
+    openmw
   ];
 
   catppuccin = {
