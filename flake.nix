@@ -8,13 +8,12 @@
     mango.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     secrets = {
       url = "/home/hman/nix/secrets";
       flake = false; 
     };
   };
-  outputs = inputs@{ self, nixpkgs, nixos-x13s, catppuccin, home-manager, niri, mango, secrets, chaotic, ... }: 
+  outputs = inputs@{ self, nixpkgs, nixos-x13s, catppuccin, home-manager, niri, mango, secrets, ... }: 
   let
     secretsData = import "${secrets}/secrets.nix";
   in {
@@ -27,26 +26,23 @@
       modules = [ 
         ./configuration.nix
         nixos-x13s.nixosModules.default
-        {
+        { 
           nixos-x13s.enable = true;
         }
-        
         ({ config, lib, pkgs, ... }: {
-          nixos-x13s.kernel = "mainline";
-        # nixos-x13s.kernel = lib.mkForce ((pkgs.linuxPackagesFor (
-        #   pkgs.linux_latest.override {
-        #     argsOverride = rec {
-        #       src = pkgs.fetchFromGitHub {
-        #         owner = "jhovold";
-        #         repo = "linux";
-        #         rev = "wip/sc8280xp-6.16";
-        #         hash = lib.fakeHash;
-        #       };
-        #       version = "6.16-sc8280xp";
-        #       modDirVersion = "6.16.0";
-        #     };
-        #   }
-        # )).kernel);
+          nixos-x13s.kernel = lib.mkForce ((pkgs.linuxPackagesFor (
+            pkgs.linux_latest.override {
+              argsOverride = rec {
+                src = pkgs.fetchzip {
+                  url = "https://github.com/jhovold/linux/archive/wip/sc8280xp-6.16.tar.gz";
+                  hash = "sha256-4DWbK1oNCBwW3puyRmq9G1B1ROlVAAm3zZRXe/UC15A=";
+                };
+                version = "6.16-sc8280xp";
+                modDirVersion = "6.16.0";
+                defConfig = "johan_defconfig";
+              };
+            }
+          )).kernel);
         })
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
@@ -74,7 +70,6 @@
             };
           };
         }
-        chaotic.nixosModules.default
       ];
     };
   };
