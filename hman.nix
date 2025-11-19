@@ -70,6 +70,7 @@
     syntaxHighlighting.enable = true;
     shellAliases = {
       ssh = "TERM=xterm-256color ssh";
+      ff = "fastfetch";
     };
     initContent = ''
     export PATH="$HOME/Scripts:$PATH"
