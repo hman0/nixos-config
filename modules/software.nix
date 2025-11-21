@@ -32,6 +32,7 @@
     nautilus
     gvfs
     libcamera
+    linux-firmware
   ];
 
   programs = {
