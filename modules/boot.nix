@@ -8,6 +8,9 @@
       "arm64.nopauth"
       "efi=noruntime"
     ];
+    binfmt = {
+      emulatedSystems = [ "x86_64-linux" "i686-linux" ];
+    };
     loader = {
       systemd-boot = {
         enable = true;

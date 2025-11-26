@@ -61,11 +61,6 @@
 
   programs.zsh = {
     enable = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "xiong-chiamiov-plus";
-      plugins = [ "git" ];
-    };
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
@@ -73,11 +68,19 @@
       ff = "fastfetch";
     };
     initContent = ''
+    HISTSIZE=10000
+    SAVEHIST=10000
+    HISTCONTROL=ignoredups
+    HISTFILE=~/.zsh_history
+
+    setopt AUTO_CD  
+    setopt NOCLOBBER
+    setopt APPEND_HISTORY
+    setopt INC_APPEND_HISTORY
+
     export PATH="$HOME/Scripts:$PATH"
 
-    echo "-----------------------------------------------------"
-    fastfetch --config nix 
-    echo "-----------------------------------------------------"
+    PROMPT="%F{blue}%n@%m%f %F{blue}%~ %f"
     '';
   };
 

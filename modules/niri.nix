@@ -37,7 +37,7 @@
         };
       };
       animations = { 
-	enable = false;
+        enable = false;
       };
       layout = {
         gaps = 16;
