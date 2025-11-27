@@ -33,6 +33,7 @@
     gvfs
     libcamera
     linux-firmware
+    distrobox
   ];
 
   programs = {
