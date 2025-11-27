@@ -60,6 +60,7 @@
               ./modules/niri.nix
               ./modules/mango.nix
               ./modules/nvim.nix
+              ./modules/zsh.nix
               catppuccin.homeModules.catppuccin
               niri.homeModules.niri
               mango.hmModules.mango
