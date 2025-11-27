@@ -7,7 +7,6 @@
 
   home.file."Scripts".source = ./hman/dotfiles/Scripts;
   xdg.configFile."eww".source = ./hman/dotfiles/eww;
-  #xdg.configFile."nvim".source = ./hman/dotfiles/nvim;
   xdg.configFile."mimeapps.list".force = true;
   home.file."Pictures/Wallpapers".source = ./hman/dotfiles/Wallpapers;
   home.file."Pictures/Wallpapers".recursive = true;
@@ -57,27 +56,6 @@
     package = pkgs.bibata-cursors;
     size = 24;
     x11.enable = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "xiong-chiamiov-plus";
-      plugins = [ "git" ];
-    };
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    shellAliases = {
-      ssh = "TERM=xterm-256color ssh";
-    };
-    initContent = ''
-    export PATH="$HOME/Scripts:$PATH"
-
-    echo "-----------------------------------------------------"
-    fastfetch --config nix 
-    echo "-----------------------------------------------------"
-    '';
   };
 
   home.file.".local/share/fastfetch/presets/nix.jsonc" = {
@@ -352,6 +330,7 @@
     puddletag
     protontricks
     openmw
+    boxbuddy
   ];
 
   catppuccin = {
