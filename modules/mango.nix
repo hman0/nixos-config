@@ -93,8 +93,7 @@
       
       # ===== Autostart =====
       exec-once=eww open bar0
-      exec-once=eww open bar1
-      exec-once=swaybg -i /home/hman/Pictures/Wallpapers/evening-sky.png
+      exec-once=swaybg -i ~/Pictures/Wallpapers/evening-sky.png
       exec-once=xwayland-satellite
       exec-once=dunst
       
@@ -149,26 +148,28 @@
       bind=CTRL+SUPER,i,tagtoright
       
       # Direct Tag Access
-      bind=SUPER,1,view,1
-      bind=SUPER,2,view,2
-      bind=SUPER,3,view,3
-      bind=SUPER,4,view,4
-      bind=SUPER,5,view,5
-      bind=SUPER,6,view,6
-      bind=SUPER,7,view,7
-      bind=SUPER,8,view,8
-      bind=SUPER,9,view,9
+      bind=SUPER,code:10,view,1
+      bind=SUPER,code:11,view,2
+      bind=SUPER,code:12,view,3
+      bind=SUPER,code:13,view,4
+      bind=SUPER,code:14,view,5
+      bind=SUPER,code:15,view,6
+      bind=SUPER,code:16,view,7
+      bind=SUPER,code:17,view,8
+      bind=SUPER,code:18,view,9
+
       
       # Move Window to Tag
-      bind=SHIFT+SUPER,1,tag,1
-      bind=SHIFT+SUPER,2,tag,2
-      bind=SHIFT+SUPER,3,tag,3
-      bind=SHIFT+SUPER,4,tag,4
-      bind=SHIFT+SUPER,5,tag,5
-      bind=SHIFT+SUPER,6,tag,6
-      bind=SHIFT+SUPER,7,tag,7
-      bind=SHIFT+SUPER,8,tag,8
-      bind=SHIFT+SUPER,9,tag,9
+      bind=SHIFT+SUPER,code:10,tag,1
+      bind=SHIFT+SUPER,code:11,tag,2
+      bind=SHIFT+SUPER,code:12,tag,3
+      bind=SHIFT+SUPER,code:13,tag,4
+      bind=SHIFT+SUPER,code:14,tag,5
+      bind=SHIFT+SUPER,code:15,tag,6
+      bind=SHIFT+SUPER,code:16,tag,7
+      bind=SHIFT+SUPER,code:17,tag,8
+      bind=SHIFT+SUPER,code:18,tag,9
+
       
       # Layout Management
       bind=SUPER,r,switch_proportion_preset
