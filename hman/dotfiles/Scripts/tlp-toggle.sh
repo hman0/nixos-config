@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Script to toggle between TLP Battery mode and Balanced Gaming mode (Thinkpad X13s)
+# Script to cycle between TLP Battery, Balanced Gaming, and Max Performance modes (Thinkpad X13s)
 STATE_FILE="/tmp/tlp_gaming_mode"
 
 apply_balanced_gaming_settings() {
@@ -40,9 +40,7 @@ apply_balanced_gaming_settings() {
     fi
     
     # Keep PCI power management for non-critical devices
-    # Only force 'on' for GPU and critical gaming devices
     for device in /sys/bus/pci/devices/*/power/control; do
-        # You can add specific device filtering here if needed
         echo "auto" | doas tee "$device" > /dev/null 2>&1
     done
     
@@ -52,16 +50,80 @@ apply_balanced_gaming_settings() {
     done
 }
 
-# Check current mode
+apply_max_performance_settings() {
+    # Use performance governor for maximum responsiveness
+    for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+        echo "performance" | doas tee "$cpu" > /dev/null 2>&1
+    done
+    
+    # Set performance energy preference
+    for cpu in /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; do
+        if [ -f "$cpu" ]; then
+            echo "performance" | doas tee "$cpu" > /dev/null 2>&1
+        fi
+    done
+    
+    # Set minimum frequency high to avoid downclocking
+    for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_min_freq; do
+        echo "1800000" | doas tee "$cpu" > /dev/null 2>&1
+    done
+    
+    # Set max frequency to maximum available
+    for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_max_freq; do
+        MAX_AVAILABLE=$(cat "${cpu/scaling_max_freq/cpuinfo_max_freq}" 2>/dev/null || echo "3000000")
+        echo "$MAX_AVAILABLE" | doas tee "$cpu" > /dev/null 2>&1
+    done
+    
+    # Enable turbo boost
+    if [ -f /sys/devices/system/cpu/intel_pstate/no_turbo ]; then
+        echo "0" | doas tee /sys/devices/system/cpu/intel_pstate/no_turbo > /dev/null 2>&1
+    fi
+    if [ -f /sys/devices/system/cpu/cpufreq/boost ]; then
+        echo "1" | doas tee /sys/devices/system/cpu/cpufreq/boost > /dev/null 2>&1
+    fi
+    
+    # Use performance platform profile
+    if [ -f /sys/firmware/acpi/platform_profile ]; then
+        echo "performance" | doas tee /sys/firmware/acpi/platform_profile > /dev/null 2>&1
+    fi
+    
+    # Disable PCI power management
+    for device in /sys/bus/pci/devices/*/power/control; do
+        echo "on" | doas tee "$device" > /dev/null 2>&1
+    done
+    
+    # Disable USB autosuspend
+    for device in /sys/bus/usb/devices/*/power/autosuspend; do
+        echo "-1" | doas tee "$device" > /dev/null 2>&1
+    done
+    for device in /sys/bus/usb/devices/*/power/control; do
+        echo "on" | doas tee "$device" > /dev/null 2>&1
+    done
+}
+
+# Determine current mode and cycle to next
 if [ -f "$STATE_FILE" ]; then
-    MODE="battery"
-    notify-send "TLP Mode" "Switching to Battery Optimization" -t 3000 -u normal
+    CURRENT_MODE=$(cat "$STATE_FILE")
 else
-    MODE="gaming"
-    notify-send "TLP Mode" "Switching to Balanced Gaming" -t 3000 -u normal
+    CURRENT_MODE="battery"
 fi
 
-if [ "$MODE" = "gaming" ]; then
+case "$CURRENT_MODE" in
+    battery)
+        MODE="balanced"
+        notify-send "TLP Mode" "Switching to Balanced Gaming" -t 3000 -u normal
+        ;;
+    balanced)
+        MODE="maxperf"
+        notify-send "TLP Mode" "Switching to Maximum Performance" -t 3000 -u normal
+        ;;
+    *)
+        MODE="battery"
+        notify-send "TLP Mode" "Switching to Battery Optimization" -t 3000 -u normal
+        ;;
+esac
+
+if [ "$MODE" = "balanced" ]; then
     # Stop any existing monitor
     if [ -f /tmp/tlp_gaming_monitor.pid ]; then
         OLD_PID=$(cat /tmp/tlp_gaming_monitor.pid)
@@ -74,24 +136,53 @@ if [ "$MODE" = "gaming" ]; then
     # Apply balanced gaming settings
     apply_balanced_gaming_settings
     
-    touch "$STATE_FILE"
+    echo "balanced" > "$STATE_FILE"
     
     # Monitor and reapply settings if TLP overrides them
     (
         LAST_GOV=""
-        while [ -f "$STATE_FILE" ]; do
+        while [ -f "$STATE_FILE" ] && [ "$(cat "$STATE_FILE")" = "balanced" ]; do
             CURRENT_GOV=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null)
             if [ "$CURRENT_GOV" != "schedutil" ] && [ "$CURRENT_GOV" != "$LAST_GOV" ]; then
                 apply_balanced_gaming_settings
                 LAST_GOV="$CURRENT_GOV"
             fi
-            sleep 5  # Check less frequently to save battery
+            sleep 5
+        done
+    ) &
+    echo $! > /tmp/tlp_gaming_monitor.pid
+    
+elif [ "$MODE" = "maxperf" ]; then
+    # Stop any existing monitor
+    if [ -f /tmp/tlp_gaming_monitor.pid ]; then
+        OLD_PID=$(cat /tmp/tlp_gaming_monitor.pid)
+        if kill -0 "$OLD_PID" 2>/dev/null; then
+            kill "$OLD_PID" 2>/dev/null
+        fi
+        rm -f /tmp/tlp_gaming_monitor.pid
+    fi
+    
+    # Apply maximum performance settings
+    apply_max_performance_settings
+    
+    echo "maxperf" > "$STATE_FILE"
+    
+    # Monitor and reapply settings if TLP overrides them
+    (
+        LAST_GOV=""
+        while [ -f "$STATE_FILE" ] && [ "$(cat "$STATE_FILE")" = "maxperf" ]; do
+            CURRENT_GOV=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 2>/dev/null)
+            if [ "$CURRENT_GOV" != "performance" ] && [ "$CURRENT_GOV" != "$LAST_GOV" ]; then
+                apply_max_performance_settings
+                LAST_GOV="$CURRENT_GOV"
+            fi
+            sleep 5
         done
     ) &
     echo $! > /tmp/tlp_gaming_monitor.pid
     
 else
-    # Return to TLP management
+    # Return to TLP management (battery mode)
     rm -f "$STATE_FILE"
     
     if [ -f /tmp/tlp_gaming_monitor.pid ]; then
@@ -111,10 +202,15 @@ MAX_FREQ=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 2>/dev/null
 MIN_MHZ=$((MIN_FREQ / 1000))
 MAX_MHZ=$((MAX_FREQ / 1000))
 TLP_STATUS=$(systemctl is-active tlp.service 2>/dev/null || echo "inactive")
-EPP=$(cat /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference 2>/dev/null || echo "unknown")
 
-if [ "$MODE" = "gaming" ]; then
-    notify-send "Balanced Gaming Mode" "CPU: $GOVERNOR\nEPP: $EPP\nFreq: ${MIN_MHZ}-${MAX_MHZ} MHz\nTLP: $TLP_STATUS" -t 4000 -u normal
-else
-    notify-send "Battery Optimization" "CPU: $GOVERNOR\nEPP: $EPP\nFreq: ${MIN_MHZ}-${MAX_MHZ} MHz\nTLP: $TLP_STATUS" -t 4000 -u normal
-fi
+case "$MODE" in
+    balanced)
+        notify-send "Balanced Gaming Mode" "CPU: $GOVERNOR\nFreq: ${MIN_MHZ}-${MAX_MHZ} MHz\nTLP: $TLP_STATUS" -t 4000 -u normal
+        ;;
+    maxperf)
+        notify-send "Maximum Performance Mode" "CPU: $GOVERNOR\nFreq: ${MIN_MHZ}-${MAX_MHZ} MHz\nTLP: $TLP_STATUS" -t 4000 -u normal
+        ;;
+    *)
+        notify-send "Battery Optimization" "CPU: $GOVERNOR\nFreq: ${MIN_MHZ}-${MAX_MHZ} MHz\nTLP: $TLP_STATUS" -t 4000 -u normal
+        ;;
+esac
