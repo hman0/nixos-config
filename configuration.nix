@@ -15,6 +15,7 @@
     GTK_USE_PORTAL = "1";
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
     BROWSER = "librewolf";
+    EDITOR = "nvim";
   };
   
   environment.etc."/wayland-sessions/niri.desktop".text = ''
