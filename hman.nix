@@ -308,7 +308,6 @@
     melonDS
     jellyfin-rpc
     openmw
-    boxbuddy
   ];
 
   catppuccin = {
