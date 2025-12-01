@@ -31,6 +31,8 @@
     rustc
     nautilus
     gvfs
+    mission-center
+    linux-firmware
   ];
 
   programs = {
@@ -44,15 +46,19 @@
       enable = true;
       binfmt = true;
     };
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-    };
     gamescope = { 
       enable = true;
     };
+  };
 
-    
+  services = {
+    flatpak = {
+      enable = true;
+      packages = [
+        "com.github.tchx84.Flatseal"
+        "com.valvesoftware.Steam"
+      ];
+    };
   };
 
   fonts = {
