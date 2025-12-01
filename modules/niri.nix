@@ -245,9 +245,9 @@
         "Mod+V".action=toggle-window-floating; 
         "Mod+Shift+V".action=switch-focus-between-floating-and-tiling;
 
-        "Shift+Mod+S".action=screenshot;
-        "Print".action.screenshot-screen = [];
-        "Mod+Ctrl+S".action=screenshot-window; 
+        "Shift+Mod+S".action.spawn = ["niri" "msg" "action" "screenshot"];
+        "Print".action.spawn = ["niri" "msg" "action" "screenshot-screen"];
+        "Mod+Ctrl+S".action.spawn = ["niri" "msg" "action" "screenshot-window"];
 
         "Mod+Home".action=focus-column-first;
         "Mod+End".action=focus-column-last; 
