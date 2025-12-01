@@ -314,7 +314,6 @@
     celluloid
     superTuxKart
     prismlauncher
-    openjdk23
     playerctl
     brightnessctl
     swaybg
@@ -330,7 +329,6 @@
     puddletag
     protontricks
     openmw
-    boxbuddy
   ];
 
   catppuccin = {
