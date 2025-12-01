@@ -6,7 +6,7 @@
     powerManagement.finegrained = false;
     open = true; 
     nvidiaSettings = false;
-    package = config.boot.kernelPackages.nvidiaPackages.production; 
+    package = config.boot.kernelPackages.nvidiaPackages.beta; 
     modesetting.enable = true;
   };
 
