@@ -1,5 +1,11 @@
+# ⚠️ This Repository is a Mirror
+
+**This is a read-only mirror.** The repository has moved to Codeberg.
+
+**Repository:** https://codeberg.org/hman/nixos-config
+
 # NixOS Configuration
-![showcase](https://github.com/hman0/nixos-config/blob/master/showcase/showcase.png)
+![showcase](https://github.com/hman0/nixos-config/blob/github-mirror/showcase/showcase.png?raw=true)
 This NixOS config offers two compositor options — niri and mangowc — both tailored to look and behave as identical as possible for a consistent experience.
 
 ## Installation
