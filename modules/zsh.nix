@@ -27,7 +27,6 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-
     completionInit = ''
       autoload -Uz compinit
       setopt EXTENDEDGLOB
@@ -53,13 +52,22 @@
     initContent = ''
       bindkey "$terminfo[kcuu1]" history-substring-search-up
       bindkey "$terminfo[kcud1]" history-substring-search-down
-
       setopt AUTO_CD  
       setopt NOCLOBBER
       
       export PATH="$HOME/Scripts:$PATH"
       export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="none"
-      PROMPT="%F{blue}%n@%m%f %F{blue}%~ %f"
+      
+      autoload -Uz vcs_info
+      precmd_vcs_info() { vcs_info }
+      precmd_functions+=( precmd_vcs_info )
+      setopt prompt_subst
+      
+      zstyle ':vcs_info:git:*' formats ' %F{yellow}(%b)%f'
+      zstyle ':vcs_info:*' actionformats ' %F{yellow}(%b|%a)%f'
+      zstyle ':vcs_info:*' enable git
+      
+      PROMPT='%F{blue}%n@%m%f %F{blue}%~%f''${vcs_info_msg_0_} '
     '';
   };
 }
