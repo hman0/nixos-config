@@ -33,6 +33,7 @@
     gvfs
     mission-center
     linux-firmware
+    jq
   ];
 
   programs = {
