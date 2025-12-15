@@ -204,7 +204,7 @@
 
   programs.git = {
     enable = true;
-    userName = "hman0";
+    userName = "hman";
     userEmail = secrets.git_email;
   };
   
