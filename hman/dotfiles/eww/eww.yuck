@@ -11,10 +11,10 @@
              :space-evenly true
              :icon-size 20
              :spacing 10)
-    (metric :label " "
+    (metric :label " "
             :value volume
             :onchange "pamixer --set-volume {}")
-    (metric :label " "
+    (metric :label " "
             :value {EWW_RAM.used_mem_perc}
             :onchange "")
     (metric :label "󰋊 "
