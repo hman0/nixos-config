@@ -1,5 +1,5 @@
 # NixOS Configuration
-![showcase](https://github.com/hman0/nixos-config/blob/master/showcase/showcase.png)
+![showcase](https://codeberg.org/hman/nixos-config/raw/branch/master/showcase/showcase.png)
 This NixOS config offers two compositor options — niri and mangowc — both tailored to look and behave as identical as possible for a consistent experience.
 
 ## Installation
