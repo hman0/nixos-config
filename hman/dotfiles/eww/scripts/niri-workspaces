@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+MONITOR=$1
+
+get_workspaces() {
+    niri msg workspaces | awk -v monitor="$MONITOR" '
+    /^Output/ { 
+        current_output = $2
+        gsub(/"/, "", current_output)
+        gsub(/:/, "", current_output)
+        output_index++
+        next
+    }
+    /^ / {
+        if (output_index - 1 == monitor) {
+            is_active = ($1 == "*") ? "true" : "false"
+            workspace_id = ($1 == "*") ? $2 : $1
+            printf "{\"id\":%s,\"active\":%s},", workspace_id, is_active
+        }
+    }
+    ' | sed 's/,$//'
+}
+
+echo "[$(get_workspaces)]"
+
+niri msg --json event-stream | while read -r line; do
+    echo "[$(get_workspaces)]"
+done

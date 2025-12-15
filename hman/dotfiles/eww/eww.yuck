@@ -1,6 +1,6 @@
-(defwidget bar []
+(defwidget bar [monitor]
   (centerbox :orientation "h"
-    (workspaces)
+    (workspaces :monitor monitor)
     (music)
     (sidestuff)))
 
@@ -11,10 +11,10 @@
              :space-evenly true
              :icon-size 20
              :spacing 10)
-    (metric :label " "
+    (metric :label " "
             :value volume
             :onchange "pamixer --set-volume {}")
-    (metric :label " "
+    (metric :label " "
             :value {EWW_RAM.used_mem_perc}
             :onchange "")
     (metric :label "󰋊 "
@@ -22,21 +22,22 @@
             :onchange "")
     time))
 
-(defwidget workspaces []
+(defwidget workspaces [monitor]
   (box :class "workspaces"
-       :orientation "h"
-       :space-evenly true
-       :halign "start"
-       :spacing 10
-    (button :onclick "niri msg action focus-workspace 1" 1)
-    (button :onclick "niri msg action focus-workspace 2" 2)
-    (button :onclick "niri msg action focus-workspace 3" 3)
-    (button :onclick "niri msg action focus-workspace 4" 4)
-    (button :onclick "niri msg action focus-workspace 5" 5)
-    (button :onclick "niri msg action focus-workspace 6" 6)
-    (button :onclick "niri msg action focus-workspace 7" 7)
-    (button :onclick "niri msg action focus-workspace 8" 8)
-    (button :onclick "niri msg action focus-workspace 9" 9)))
+    :orientation "h"
+    :space-evenly true
+    :halign "start"
+    :spacing 0
+    (for workspace in {monitor == 0 ? workspaces_monitor0 : workspaces_monitor1}
+      (button :onclick "niri msg action focus-workspace ${workspace.id}"
+              :class "${workspace.active ? 'active' : ''}"
+              "${workspace.id}"))))
+
+(deflisten workspaces_monitor0 :initial "[]"
+  "scripts/niri-workspaces 0")
+
+(deflisten workspaces_monitor1 :initial "[]"
+  "scripts/niri-workspaces 1")
 
 (defwidget music []
   (box :class "music"
@@ -44,7 +45,6 @@
        :space-evenly false
        :halign "center"
     {music != "" ? "${music}" : ""}))
-
 
 (defwidget metric [label value onchange]
   (box :orientation "h"
@@ -82,7 +82,7 @@
                       :anchor "top center")
   :reserve (struts :side "top" :distance "4%")
   :exclusive true
-  (bar))
+  (bar :monitor 0))
 
 (defwindow bar1
   :monitor 1
@@ -94,23 +94,19 @@
                       :anchor "top center")
   :reserve (struts :side "top" :distance "4%")
   :exclusive true
-  (bar))
+  (bar :monitor 1))
 
 (defwindow sysinfo
   :monitor 1
   :geometry (geometry :x "77%" :y "3%" :width "20%" :height "90%")
-
   (box :orientation "vertical" :space-evenly true 
     (label :text "HOSTNAME" :class "hostname")
-
     (box :orientation "horizontal" :space-evenly true
       (label :text "CPU" :class "cpu")
       (label :text "RAM" :class "ram"))
-
     (box :orientation "horizontal" :space-evenly true
       (label :text "DISK" :class "disk")
       (label :text "NETWORK" :class "net"))
-
     (box :orientation "horizontal" :space-evenly true
       (label :text "CLOCK" :class "clock")
       (label :text "WEATHER" :class "weather"))

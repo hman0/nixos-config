@@ -61,6 +61,14 @@
   color: #D35D6E;
 }
 
+.workspaces button.active {
+  background-color: #ed8796;
+  color: #24273a;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+
+
 // .hostname {
 //   font-size: 20px;
 //   font-weight: bold;
